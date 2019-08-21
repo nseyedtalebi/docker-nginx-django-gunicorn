@@ -15,6 +15,7 @@ services:
       - django_frontend-net
     ports:
       - 8000:80
+  #replace with some image that combines django and gnuicornn
   django:
     image: dtempleton/django:latest
     depends_on:
@@ -29,15 +30,15 @@ services:
       - django_frontend-net
       - django_backend-net
   db:
-    image: mariadb:latest
+    image: postgres:latest
     networks:
       - django_backend-net
     env_file:
-      - ./env/django-mariadb.env
-      - ./env/mariadb.env
+      - ./env/django-postgres.env
+      - ./env/postgres.env
     volumes:
       - ./db/mysql:/var/lib/mysql
-
+      #Replace with postgres stuff
 networks:
   django_frontend-net:
     name: django_frontend-net
